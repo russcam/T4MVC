@@ -375,6 +375,14 @@ namespace T4MVCHostMvcApp.Tests
         }
 
         [TestMethod()]
+        public void TestOptionalParamWithDefaultReal()
+        {
+            var actionRes = (IT4MVCActionResult)MVC.Home.ActionWithOptionalParamDefaultingToReal(6.02E-23);
+
+            TestNoRouteValue(actionRes, "n");
+        }
+
+        [TestMethod()]
         public void TestOptionalParamWithDefaultValue()
         {
             var actionRes = (IT4MVCActionResult)MVC.Home.ActionWithOptionalParamDefaultingToDefaultValue(default(CancellationToken));
@@ -386,6 +394,14 @@ namespace T4MVCHostMvcApp.Tests
         public void TestOptionalParamWithDefaultValueContainingSpaces()
         {
             var actionRes = (IT4MVCActionResult)MVC.Home.ActionWithOptionalParamDefaultingToDefaultValueWithSpaces(default(CancellationToken));
+
+            TestNoRouteValue(actionRes, "cancellationToken");
+        }
+
+        [TestMethod()]
+        public void TestOptionalParamWithDefaultValueWithNullableValue()
+        {
+            var actionRes = (IT4MVCActionResult)MVC.Home.ActionWithOptionalParamDefaultingToDefaultValueWithNullable(default(CancellationToken?));
 
             TestNoRouteValue(actionRes, "cancellationToken");
         }
